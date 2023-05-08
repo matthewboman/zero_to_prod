@@ -1,5 +1,4 @@
-use actix_web::{web, HttpResponse, ResponseError, http::StatusCode};
-use anyhow::Context;
+use actix_web::{web, HttpResponse};
 use sqlx::PgPool;
 use uuid::Uuid;
 

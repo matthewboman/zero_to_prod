@@ -108,7 +108,8 @@ pub async fn store_token(
         subscription_token,
         subscriber_id
     ).execute(transaction)
-    .await?;
+    .await
+    .map_err(StoreTokenError)?;
 
     Ok(())
 }
@@ -137,7 +138,7 @@ pub async fn send_confirmation_email(
     );
 
     email_client.send_email(
-        new_subscriber.email,
+        &new_subscriber.email,
         "Welcome",
         &plain_body,
         &html_body,
@@ -175,7 +176,7 @@ impl std::error::Error for StoreTokenError {
     }
 }
 
-fn error_chain_fmt(
+pub fn error_chain_fmt(
     e: &impl std::error::Error,
     f: &mut std::fmt::Formatter<'_>,
 ) -> std::fmt::Result {
