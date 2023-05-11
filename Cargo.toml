@@ -13,11 +13,14 @@ name = "zero_to_prod"
 
 [dependencies]
 actix-web = "4"
+actix-web-flash-messages = { version = "0.4", features = ["cookies"] }
 anyhow = "1"
+argon2 = { version = "0.4", features = ["std"] }
+base64 = "0.21"
 chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
 config = "0.13"
+htmlescape = "0.3"
 rand = { version = "0.8", features = ["std_rng"] }
-reqwest = { version = "0.11", default-features = false, features = ["json", "rustls-tls"] }
 secrecy = { version = "0.8", features = ["serde"]}
 serde = { version = "1", features = ["derive"] }
 serde-aux = "4"
@@ -29,8 +32,18 @@ tracing-log = "0.1.1"
 tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
 tracing-bunyan-formatter = "^0.3"
 unicode-segmentation = "1"
+urlencoding = "2"
 uuid = { version = "1", features = ["v4"] }
 validator = "0.16"
+
+[dependencies.reqwest]
+version = "0.11"
+default-features = false
+features = [
+    "cookies",
+    "json", 
+    "rustls-tls"
+]
 
 [dependencies.sqlx]
 version = "0.6"
