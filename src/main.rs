@@ -3,7 +3,7 @@ use zero_to_prod::configuration::get_configuration;
 use zero_to_prod::telemetry::{get_subscriber, init_subscriber};
 
 #[tokio::main]
-async fn main() -> Result<(), std::io::Error> {
+async fn main() -> Result<(), anyhow::Error> {
     let subscriber = get_subscriber("zero2prod".into(), "info".into(), std::io::stdout);
     init_subscriber(subscriber);
 

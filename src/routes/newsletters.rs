@@ -39,7 +39,7 @@ pub async fn publish_newsletter(
     request:      HttpRequest
 ) -> Result<HttpResponse, PublishError> {
     let credentials = basic_authentication(request.headers()).map_err(PublishError::AuthError)?;
-    let user_id = validate_credentials(credentials, &pool)
+    validate_credentials(credentials, &pool)
         .await
         .map_err(|e| match e {
             AuthError::InvalidCredentials(_) => PublishError::AuthError(e.into()),
