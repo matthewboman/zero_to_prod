@@ -23,7 +23,8 @@ use crate::routes::{
     login, 
     login_form,
     log_out,
-    publish_newsletter, 
+    publish_newsletter,
+    publish_newsletter_form, 
     subscribe
 };
 
@@ -114,7 +115,9 @@ async fn run(
                     .route("/dashboard", web::get().to(admin_dashboard))
                     .route("/password", web::get().to(change_password_form))
                     .route("/password", web::post().to(change_password))
-                    .route("/logout", web::post().to(log_out)),
+                    .route("/logout", web::post().to(log_out))
+                    .route("/newsletters", web::get().to(publish_newsletter_form))
+                    .route("/newsletters", web::post().to(publish_newsletter))
             )
             .app_data(db_pool.clone())
             .app_data(email_client.clone())
